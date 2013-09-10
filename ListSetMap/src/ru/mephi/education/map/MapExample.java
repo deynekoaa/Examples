@@ -10,8 +10,6 @@ import java.util.Random;
 import java.util.Set;
 import java.util.TreeMap;
 
-import javax.swing.JTable.PrintMode;
-
 import ru.mephi.education.collections.Student;
 
 public class MapExample {
@@ -44,6 +42,11 @@ public class MapExample {
 			entry.setValue(5);
 		}
 		printMap(sortedMap);
+		printMap(map);
+
+		map.put(new Student("Гарри Поттер", 14), 5);
+		map.put(new Student("Гермиона Грэйнджер", 12), 5);
+		map.put(new Student("Рон Уизли", 13), 5);
 		printMap(map);
 	}
 

@@ -55,7 +55,7 @@ public class Reader {
 			Map<Integer, String> students = new TreeMap<>();
 			for (String row : list) {
 				System.out.println(row);
-				String[] student = row.split(",");
+				String[] student = row.split(";");
 				students.put(Integer.valueOf(student[1]), student[0]);
 			}
 			System.out.println("write to file");

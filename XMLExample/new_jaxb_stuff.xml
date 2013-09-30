@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<company>
+    <staff id="1001">
+        <firstname>Alexandr</firstname>
+        <lastname>Nazarov</lastname>
+        <nickname>Bazar</nickname>
+        <salary>100000</salary>
+    </staff>
+    <staff id="3001">
+        <firstname>Alexandr</firstname>
+        <lastname>Boruchinkin</lastname>
+        <nickname>Boruch</nickname>
+        <salary>30000</salary>
+    </staff>
+</company>

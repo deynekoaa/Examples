@@ -72,7 +72,9 @@ public class Reader {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		} finally {
+		} catch (Throwable t){
+			
+		}finally {
 			try {
 				reader.close();
 				writer.close();

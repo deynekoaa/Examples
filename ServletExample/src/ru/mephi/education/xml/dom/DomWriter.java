@@ -1,6 +1,5 @@
 package ru.mephi.education.xml.dom;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 
@@ -22,23 +21,11 @@ import org.xml.sax.SAXException;
 
 public class DomWriter {
 
-	private static File outFile = new File("new_staff.xml");
-
-	public static void main(String[] args) throws ParserConfigurationException,
-			SAXException, IOException, TransformerException {
-
-		Document doc = parseFile();
-
-		addContent(doc);
-
-		saveContent(doc);
-	}
-
 	public static void writeXmlToStream(OutputStream os)
 			throws ParserConfigurationException, SAXException, IOException,
 			TransformerConfigurationException,
 			TransformerFactoryConfigurationError, TransformerException {
-		Document doc = parseFile();
+		Document doc = createDocument();
 
 		addContent(doc);
 
@@ -59,23 +46,9 @@ public class DomWriter {
 		transformer.transform(source, result);
 	}
 
-	private static void saveContent(Document doc)
-			throws TransformerFactoryConfigurationError,
-			TransformerConfigurationException, TransformerException {
-		TransformerFactory transformerFactory = TransformerFactory
-				.newInstance();
-		Transformer transformer = transformerFactory.newTransformer();
-		transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-		transformer.setOutputProperty(
-				"{http://xml.apache.org/xslt}indent-amount", "3");
-		DOMSource source = new DOMSource(doc);
-		StreamResult result = new StreamResult(outFile);
-		transformer.transform(source, result);
-	}
-
 	private static void addContent(Document doc) {
 		Element elem = doc.createElement("staff");
-		doc.getDocumentElement().appendChild(elem);
+		doc.appendChild(elem);
 		elem.setAttribute("id", "3001");
 		Element firstNameElem = doc.createElement("firstname");
 		elem.appendChild(firstNameElem);
@@ -93,13 +66,11 @@ public class DomWriter {
 		doc.normalize();
 	}
 
-	private static Document parseFile() throws ParserConfigurationException,
-			SAXException, IOException {
-		File fXmlFile = new File("staff.xml");
+	private static Document createDocument()
+			throws ParserConfigurationException, SAXException, IOException {
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-		Document doc = dBuilder.parse(fXmlFile);
-		doc.getDocumentElement().normalize();
+		Document doc = dBuilder.newDocument();
 		return doc;
 	}
 
